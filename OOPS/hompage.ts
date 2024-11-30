@@ -6,9 +6,9 @@ export class HomePage extends LoginPage{
     constructor(page:Page,context:BrowserContext){
         super(page,context)
     }
-
+    
     async clickCrmsfa(){
-        await this.page.locator("text=CRM/SFA").click()
+        await this.page.click(this.selectors.crmClick)    
     }
 
 }

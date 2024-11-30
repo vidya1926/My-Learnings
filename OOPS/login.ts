@@ -8,9 +8,20 @@ import {test} from '@playwright/test'
     username:string="demoCSR"
     password:string="crmsfa"
 
+
+    public selectors={
+        usernameSelector:"#username",
+        passwordSelector:"#passowrd",
+        loginbutton:".decorativeSubmit",
+        crmClick:"text=CRM/SFA"
+    }
+
+
+
     constructor(page:Page,context:BrowserContext){
         this.page=page
         this.context=context
+    
     }
 
     async loadUrl(url:string){
@@ -20,11 +31,11 @@ import {test} from '@playwright/test'
     }
 
     async enterCredentials(){
-        await this.page.locator("#username").fill(this.username)
-        await this.page.locator("#password").fill(this.password)
+        await this.page.fill(this.selectors.usernameSelector,this.username)
+        await this.page.fill(this.selectors.loginbutton,this.password)
     }
     async clickLogin(){
-        await this.page.locator(".decorativeSubmit").click()
+        await this.page.click(this.selectors.loginbutton)
             }   
 
     async verifyTitle(){
