@@ -1,17 +1,22 @@
-import { Page } from "playwright";
+import { BrowserContext, Page } from "playwright";
+import {test} from '@playwright/test'
 
  export class LoginPage{
  
     page:Page
+    context:BrowserContext
     username:string="demoCSR"
     password:string="crmsfa"
 
-    constructor(page:Page){
+    constructor(page:Page,context:BrowserContext){
         this.page=page
+        this.context=context
     }
 
-    async loadUrl(){
-        await this.page.goto("http://leaftaps.com/opentaps/control/login")
+    async loadUrl(url:string){
+     await test.step(`Entering url`,async()=>{
+        await this.page.goto(url)
+        })
     }
 
     async enterCredentials(){
@@ -22,6 +27,9 @@ import { Page } from "playwright";
         await this.page.locator(".decorativeSubmit").click()
             }   
 
+    async verifyTitle(){
+      return  await this.page.title()
+    }
 
 }
 

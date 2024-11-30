@@ -1,8 +1,5 @@
 import { test } from "./myfixture"
 
-test(`Learning oops with playwright`,async({loginFixture,homeFixture})=>{   
-    await loginFixture.loadUrl()   
-    await loginFixture.enterCredentials()
-    await loginFixture.clickLogin()
-    await homeFixture.clickCrmsfa()    
+test(`Login functionality with session storage`,async({loginFixture})=>{   
+     console.log(await loginFixture.verifyTitle())
 })

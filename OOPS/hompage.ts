@@ -1,10 +1,10 @@
-import { Page } from "playwright";
+import { BrowserContext, Page } from "playwright";
 import { LoginPage } from "./login";
 
 export class HomePage extends LoginPage{
     
-    constructor(page:Page){
-        super(page)
+    constructor(page:Page,context:BrowserContext){
+        super(page,context)
     }
 
     async clickCrmsfa(){

@@ -8,10 +8,17 @@ type leaftapsFixture={
 }
 
 export const test =basetest.extend<leaftapsFixture>({
-    loginFixture:async({page},use)=>{
-        await use(new LoginPage(page))
+    loginFixture:async({page,context},use)=>{
+       const lp= new LoginPage(page,context)
+        await lp.loadUrl("http://leaftaps.com/opentaps/control/login")
+        await lp.enterCredentials()
+        await lp.clickLogin()
+        await lp.context.storageState({path:"./loginDatalp.json"})
+        await use(lp)
     },
-    homeFixture:async({page},use)=>{
-       await  use(new HomePage(page))
+    homeFixture:async({page,context},use)=>{
+        const hp=new HomePage(page,context)
+        await hp.loadUrl("http://leaftaps.com/opentaps/control/login")
+        await  use(hp)
     }
     })
